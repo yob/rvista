@@ -2,6 +2,8 @@ require 'bigdecimal'
 
 module RVista
 
+  # represents a single line on the purchase order. Has attributes like
+  # price, qty and description
   class LineItem
 
     attr_accessor :line_num, :qualifier, :ean, :description
@@ -9,6 +11,9 @@ module RVista
     attr_accessor :retail_unit_price, :was_unit_price, :discount
     attr_accessor :backorder, :additional_discount, :firm_sale
 
+    # returns a new RVista::LineItem object using the data passed in as an
+    # array. The array should have exactly 14 items in it. Refer to the Vista
+    # standard to see what those 14 items should be.
     def self.load_from_array(data)
       item = self.new
       raise InvalidLineItemError, 'incorrect number of data points' unless data.size == 14

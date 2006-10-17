@@ -5,6 +5,7 @@ require File.dirname(__FILE__) + '/errors'
 
 module RVista
 
+  # Represents a single Vista message (purchase order).
   class Message
 
     attr_accessor :sender_id, :receiver_id, :internal_control_number, :po_number
@@ -15,16 +16,21 @@ module RVista
     attr_accessor :delivery_location_name, :label_code
     attr_accessor :items
 
+    # creates a new RVista::Message object
     def initialize
       @items = []
     end
 
+    # reads a vista text file into memory. input should be a string 
+    # that specifies the file path
     def self.load_from_file(input)
       raise InvalidFileError, 'Invalid file' unless File.exist?(input)
       data = FasterCSV.read(input)
       return self.build_message(data)
     end
 
+    # creates a RVista::Message object from a string. Input should
+    # be a complete vista file as a string
     def self.load_from_string(input)
       data = FasterCSV.parse(input)
       return self.build_message(data)
