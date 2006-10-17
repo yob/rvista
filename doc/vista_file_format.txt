@@ -1,0 +1,75 @@
+**********************************************************************
+Proposed Record Layout for Purchase Orders from GE-Integrator4
+**********************************************************************
+
+File Structure
+  Comma Delimited ASCII File with Headers, Detail and Summary Records
+Date Format
+  dd-mm-yy
+
+
+#####################################3
+Header Line
+#####################################3
+Field   Label   Description         Type    Max Length    Notes
+001     H       Header              A       00001
+002     H       Sender-Id           AN      00013         Company Internal #
+003     H       Receiver-id         AN      00013         Partner Internal #
+004     H       Internal Control    AN      00014         Int Control Number
+005     H       Purchase Order #    AN      00035   
+006     H       Order Subset code   AN      00003         P/Order Subset #
+007     H       Purpose Code        AN      00003         00 = Original Order
+                                                          01 = Cancel Order
+                                                          05 = Replacement Order
+008     H       Purpose Description AN      00010
+009     H       Date                DF      00008         Purchase order date
+010     H       Myer Group code     AN      00030         Myer Class/Group
+011     H       Supply After        DF      00008         Earliest Del Date      
+012     H       Supply Before       DF      00008         Latest Del Date
+013     H       Advertised Date     DF      00008         Myer Adver Date
+014     H       Department #        AN      00035         DJ Department Number
+015     H       Supplier Ref        AN      00035     
+016     H       Buying Location     AN      00017         Store number/code of Buyer. 
+                                                          Default from Delivery 
+                                                          Location if blank
+017     H       Buying Loc Name     AN      00035         Not Used
+018     H       Delivery Location   AN      00017         Store number/code of Deliver-to
+019     H       Delivery Loc Name   AN      00035         Not Used
+020     H       Label Code          AN      00007         NL = New Line
+                                                          RPL = Replenishment
+                                                          RES = Reserve Stock
+
+
+
+#####################################3
+Line Items
+#####################################3
+Field   Label   Description         Type    Max Length    Notes
+001     D       Detail              A       00001   
+002     D       P/Order Line Number N       00006
+003     D       Product # Qualifier AN      00003
+004     D       EAN Product Number  AN      00035
+005     D       Product Description AN      00035
+006     D       Qty Ordered         N       00017
+007     D       Net Unit Price      N       00016
+008     D       Unit - Measure      AN      00003 
+009     D       Retail Unit Price   N       00016
+010     D       WAS Unit Price      N       00016  
+011     D       Discount            N       00016  
+012     D       Backorder           AN      00001 
+013     D       Additional Discount N       00016         Additional % discount
+014     D       Firm Sale           AN      00001  
+
+
+
+
+#####################################3
+Summary Line
+#####################################3
+Field   Label   Description         Type    Max Length    Notes
+001     S       Summary             A       00001         
+002     S       # Prod Line Items   N       00015         Count of line items
+003     S       Total Order Value   N       00015         Not Used
+004     S       Total Order Qty     N       00015         Not Used
+
+
