@@ -42,7 +42,7 @@ class MessageTest < Test::Unit::TestCase
       msg = RVista::Message.load_from_file(INVALID_MISSING_FOOTER)
     }
     
-    assert_raise(RVista::InvalidFileError) {
+    assert_raise(RVista::InvalidLineItemError) {
       msg = RVista::Message.load_from_file(INVALID_LINE)
     }
 

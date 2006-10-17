@@ -62,7 +62,7 @@ module RVista
 
       # load each lineitem into the message
       data[1,data.size - 2].each do |row| 
-        raise InvalidFileError, 'Invalid line detected' unless row[0].eql?("D")
+        raise InvalidLineItemError, 'Invalid line detected' unless row[0].eql?("D")
         item = LineItem.load_from_array(row)
         msg.items << item
       end
