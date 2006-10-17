@@ -8,7 +8,7 @@ require File.dirname(__FILE__) + '/rvista/errors'
 # = Basic Usage
 #  require 'rubygems'
 #  require 'rvista'
-#  msg = RVista::Message.load('somefile.txt')
+#  msg = RVista::Message.load_from_file('somefile.txt')
 #  puts msg.to_s
 module RVista
 
