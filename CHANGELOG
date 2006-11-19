@@ -1,2 +1,5 @@
+v0.2 (19th November 2006)
+* added support for converting a RVista::Message object to a string
+
 v0.1.0 (17th October 2006)
 * Initial Release
