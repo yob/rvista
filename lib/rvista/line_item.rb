@@ -34,6 +34,33 @@ module RVista
 
       return item
     end
+    
+    # output a string that represents this line item that meets the vista spec
+    def to_s
+      msg = ""
+      msg << "D," 
+      msg << "#{line_num.to_s},"
+      msg << "#{qualifier},"
+      msg << "#{ean},"
+      msg << "#{description},"
+      msg << "#{qty.to_s},"
+      msg << sprintf("%.2f", nett_unit_price) unless nett_unit_price.nil?
+      msg << ","
+      msg << "#{unit_measure},"
+      msg << sprintf("%.2f", retail_unit_price) unless retail_unit_price.nil?
+      msg << ","
+      msg << sprintf("%.2f", was_unit_price) unless was_unit_price.nil?
+      msg << ","
+      msg << "#{discount.to_s},"
+      if backorder == true
+        msg << "Y,"
+      else
+        "N,"
+      end
+      msg << "#{additional_discount},"
+      msg << "#{firm_sale}"
+      return msg
+    end
       
   end
 

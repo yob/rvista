@@ -52,6 +52,12 @@ class MessageTest < Test::Unit::TestCase
 
   end
 
+  def test_to_s
+    msg = RVista::Message.load_from_file(VALID)
+    content = File.read(VALID)
+    assert_equal content, msg.to_s
+  end
+
   private
 
   # ensures the properties of the supplied RVista::Message object

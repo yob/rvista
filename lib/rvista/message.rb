@@ -36,6 +36,41 @@ module RVista
       return self.build_message(data)
     end
 
+    # print a string representation of this order that meets the spec
+    def to_s
+      # message header
+      msg = ""
+      msg << "H,"
+      msg << "#{sender_id},"
+      msg << "#{receiver_id},"
+      msg << "#{internal_control_number},"
+      msg << "#{po_number},"
+      msg << "#{po_subset_code},"
+      msg << "#{purpose_code},"
+      msg << "#{purpose_desc},"
+      msg << "#{date},"
+      msg << "#{myer_code},"
+      msg << "#{supply_after},"
+      msg << "#{supply_before},"
+      msg << "#{advertised_date},"
+      msg << "#{department},"
+      msg << "#{supplier_ref},"
+      msg << "#{buying_location},"
+      msg << "#{buying_location_name},"
+      msg << "#{delivery_location},"
+      msg << "#{delivery_location_name},"
+      msg << "#{label_code}\n"
+      
+      # message line items
+      @items.each { |item| msg << item.to_s << "\n"}
+
+      # message summary
+      msg << "S,#{@items.size.to_s},,\n"
+
+
+      return msg
+    end
+
     private
 
     def self.build_message(data)
