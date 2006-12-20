@@ -2,6 +2,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../../lib')
 
 require 'test/unit'
 require 'rvista'
+require 'fastercsv'
 
 class LineItemTest < Test::Unit::TestCase
 
@@ -21,6 +22,22 @@ class LineItemTest < Test::Unit::TestCase
     @row << "Y"
     @row << nil
     @row << nil
+
+    @row2 = []
+    @row2 << "D"
+    @row2 << "1"
+    @row2 << "IB"
+    @row2 << "0701180358"
+    @row2 << "DIGGING TO AMERICA"
+    @row2 << "3"
+    @row2 << "0.00"
+    @row2 << "EA"
+    @row2 << nil
+    @row2 << nil
+    @row2 << "43"
+    @row2 << "N"
+    @row2 << nil
+    @row2 << nil
   end
 
   # ensure the load_from_array method works as expected
@@ -51,6 +68,20 @@ class LineItemTest < Test::Unit::TestCase
       item = RVista::LineItem.load_from_array(%w[D blah])
     }
 
+  end
+
+  def test_to_s
+    item = RVista::LineItem.load_from_array(@row)
+    str = item.to_s
+    arr = FasterCSV.parse(str).first
+
+    assert_equal 14, arr.size
+    
+    item = RVista::LineItem.load_from_array(@row2)
+    str = item.to_s
+    arr = FasterCSV.parse(str).first
+
+    assert_equal 14, arr.size
   end
 
 end

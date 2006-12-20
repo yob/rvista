@@ -55,7 +55,7 @@ module RVista
       if backorder == true
         msg << "Y,"
       else
-        "N,"
+        msg << "N,"
       end
       msg << "#{additional_discount},"
       msg << "#{firm_sale}"
