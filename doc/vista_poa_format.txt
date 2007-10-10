@@ -1,0 +1,92 @@
+**********************************************************************
+Proposed Record Layout for Purchase Order Acknowledgement for HDS
+**********************************************************************
+
+File Description
+  Purchase Order Acknowledgements input to HDS
+File Structure
+  Comma Delimited ASCII File with Headers, Detail and Summary Records
+Date Format
+  dd/mm/yy
+
+
+######################################
+Header Line
+######################################
+
+Field   Label   Description           Type    Max Length    Notes
+001       H     Header                 A        00001
+002       H     Sender-Id              AN       00013       Sender’s SAN
+003       H     Receiver-id            AN       00013       Receiver’s SAN
+004       H                            AN       00000       Not used
+005       H                            AN       00000       Not used
+006       H                            AN       00000       Not used
+007       H                            AN       00000       Not used
+008       H     Purchase Order Number  AN       00035 
+009       H     Date                   DF       00008       Purchase order date
+010       H                            AN       00000       Not used
+011       H     Supply After           DF       00008       Earliest Del Date      
+012       H     Supply Before          DF       00008       Latest Del Date
+013       H     “SP”                   A        00002       Always “SP”
+014       H     Delivery Location      AN       00017       Receiver’s SAN
+015       H     Delivery Location Name AN       00035       Sender’s POA number
+
+
+
+######################################
+Line Items
+######################################
+
+Field   Label   Description         Type    Max Length    Notes
+
+001       D     Detail               A        00001 
+002       D     P/Order Line Number  N        00006 
+003       D     EAN Product Number   AN       00035 
+004       D                          AN       00000       Not used
+005       D     Product Description  AN       00035       Title
+006       D     Net Unit Price       N        00016       Cost excl. GST
+007       D     “1”                  N        00001       Always “1”
+008       D     Quantity Inners      N        00017 
+009       D     Tax rate             N        00017       “10.00”
+010       D     Not Used             AN       00000       Not used
+011       D     Buying Location      AN       00017       Receiver’s SAN
+012       D     Buying Location Name AN       00035 
+013       D     Not Used             AN 
+014       D     Delivered Quantity   N        00016       Quantity to be delivered
+015       D     Status Code          N        00002       Refer table below for status codes
+016       D     Demand Qty           N        00016       Qty ordered
+017       D     Pub-Price            N        00016       RRP
+018       D     Discount %           N        00016 
+019       D     Availability Date    DF       00008 
+020       D     Text                 A        00030 
+
+
+#####################################3
+Summary Line
+#####################################3
+
+Field   Label   Description          Type    Max Length    Notes
+001       S     Summary               A       00001 
+002       S     Number of Order lines N       00006 
+003       S     Total Quantity        N       00016        Demand Qty
+
+
+
+
+
+
+
+
+#####################################3
+Status Codes
+#####################################3
+01  Shipped as ordered
+02  Title substituted
+06  Out of stock – reprinting
+07  Back ordered
+09  Part supply
+10  Part back ordered
+15  Market restricted
+27  ISBN not recognised
+28  Out of print
+29  Customer backordered

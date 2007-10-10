@@ -8,9 +8,9 @@ Date Format
   dd-mm-yy
 
 
-#####################################3
+######################################
 Header Line
-#####################################3
+######################################
 Field   Label   Description         Type    Max Length    Notes
 001     H       Header              A       00001
 002     H       Sender-Id           AN      00013         Company Internal #
@@ -66,6 +66,7 @@ Field   Label   Description         Type    Max Length    Notes
 #####################################3
 Summary Line
 #####################################3
+
 Field   Label   Description         Type    Max Length    Notes
 001     S       Summary             A       00001         
 002     S       # Prod Line Items   N       00015         Count of line items
