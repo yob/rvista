@@ -4,7 +4,7 @@ require 'test/unit'
 require 'rvista'
 require 'fastercsv'
 
-class LineItemTest < Test::Unit::TestCase
+class POLineItemTest < Test::Unit::TestCase
 
   def setup
     @row = []
@@ -42,8 +42,8 @@ class LineItemTest < Test::Unit::TestCase
 
   # ensure the load_from_array method works as expected
   def test_load_from_array
-    item = RVista::LineItem.load_from_array(@row)
-    assert_kind_of RVista::LineItem, item
+    item = RVista::POLineItem.load_from_array(@row)
+    assert_kind_of RVista::POLineItem, item
 
     assert_equal item.line_num, 1
     assert_equal item.qualifier, "IB"
@@ -65,19 +65,19 @@ class LineItemTest < Test::Unit::TestCase
   def test_product_validation
     
     assert_raise(RVista::InvalidLineItemError) {
-      item = RVista::LineItem.load_from_array(%w[D blah])
+      item = RVista::POLineItem.load_from_array(%w[D blah])
     }
 
   end
 
   def test_to_s
-    item = RVista::LineItem.load_from_array(@row)
+    item = RVista::POLineItem.load_from_array(@row)
     str = item.to_s
     arr = FasterCSV.parse(str).first
 
     assert_equal 14, arr.size
     
-    item = RVista::LineItem.load_from_array(@row2)
+    item = RVista::POLineItem.load_from_array(@row2)
     str = item.to_s
     arr = FasterCSV.parse(str).first
 

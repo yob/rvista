@@ -1,7 +1,9 @@
 
-require File.dirname(__FILE__) + '/rvista/message'
-require File.dirname(__FILE__) + '/rvista/line_item'
 require File.dirname(__FILE__) + '/rvista/errors'
+require File.dirname(__FILE__) + '/rvista/po'
+require File.dirname(__FILE__) + '/rvista/po_line_item'
+require File.dirname(__FILE__) + '/rvista/poa'
+require File.dirname(__FILE__) + '/rvista/poa_line_item'
 
 # Ruby module for reading Vista HDS order files
 #

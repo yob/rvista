@@ -4,7 +4,7 @@ module RVista
 
   # represents a single line on the purchase order. Has attributes like
   # price, qty and description
-  class LineItem
+  class POLineItem
 
     attr_accessor :line_num, :qualifier, :ean, :description
     attr_accessor :qty, :nett_unit_price, :unit_measure
