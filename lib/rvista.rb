@@ -1,5 +1,7 @@
 
 require File.dirname(__FILE__) + '/rvista/errors'
+require File.dirname(__FILE__) + '/rvista/invoice'
+require File.dirname(__FILE__) + '/rvista/invoice_line_item'
 require File.dirname(__FILE__) + '/rvista/po'
 require File.dirname(__FILE__) + '/rvista/po_line_item'
 require File.dirname(__FILE__) + '/rvista/poa'

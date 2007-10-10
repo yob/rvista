@@ -1,3 +1,8 @@
+v0.5 (12th October 2007)
+* added support for Vista purchase order acks (POAs)
+* added support for Vista invoices
+* ****WARNING**** API CHANGE: renamed RVista::Message to the more sensible RVista::PO 
+
 v0.2 (19th November 2006)
 * added support for converting a RVista::Message object to a string
 
