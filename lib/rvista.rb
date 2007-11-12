@@ -7,13 +7,19 @@ require File.dirname(__FILE__) + '/rvista/po_line_item'
 require File.dirname(__FILE__) + '/rvista/poa'
 require File.dirname(__FILE__) + '/rvista/poa_line_item'
 
-# Ruby module for reading Vista HDS order files
+# Ruby module for reading Vista HDS EDI files
 #
 # = Basic Usage
 #  require 'rubygems'
 #  require 'rvista'
-#  msg = RVista::Message.load_from_file('somefile.txt')
-#  puts msg.to_s
+#  po = RVista::PO.load_from_file('somefile.txt')
+#  puts po.to_s
+#
+#  poa = RVista::POA.load_from_file('somefile.txt')
+#  puts poa.to_s
+#
+#  inv = RVista::Invoice.load_from_file('somefile.txt')
+#  puts inv.to_s
 module RVista
 
 end

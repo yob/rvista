@@ -64,4 +64,9 @@ module RVista
       
   end
 
+  class LineItem < POLineItem
+    def initialize
+      $stderr.puts "WARNING: LineItem is a deprecated class. Please use POLineItem instead."
+    end
+  end
 end

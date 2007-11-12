@@ -1,3 +1,6 @@
+v0.5.1 (12th November 2007)
+* Added RVista::Message and PO::LineItem classes for backwards compatability with =< v0.2. A deprecation warning will be printed to stderr.
+
 v0.5 (12th October 2007)
 * added support for Vista purchase order acks (POAs)
 * added support for Vista invoices

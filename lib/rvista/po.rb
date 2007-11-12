@@ -14,7 +14,7 @@ module RVista
     attr_accessor :delivery_location_name, :label_code
     attr_accessor :items
 
-    # creates a new RVista::Message object
+    # creates a new RVista::PO object
     def initialize
       @items = []
     end
@@ -113,4 +113,11 @@ module RVista
     end
   end
 
+  class Message < PO
+
+    def initialize
+      $stderr.puts "WARNING: RVista::Message is a deprecated class. Please use RVista::PO instead."
+      super
+    end
+  end
 end
