@@ -9,6 +9,7 @@ module RVista
     attr_accessor :sender_id, :receiver_id, :doc_type, :description
     attr_accessor :doc_number, :doc_date, :delivery_location, :currency
     attr_accessor :items
+    attr_accessor :total_value, :total_qty, :total_gst
 
     # creates a new RVista::Invoice object
     def initialize
@@ -95,7 +96,11 @@ module RVista
         msg.items << item
       end
 
+      raise InvalidFileError, 'Last line isn\'t a footer' unless data[-1][0].eql?("S")
       raise InvalidFileError, 'Line item count doesn\'t match footer' unless data[-1][1].to_i.eql?(msg.items.size)
+      msg.total_value = BigDecimal.new(data[-1][2])
+      msg.total_qty   = BigDecimal.new(data[-1][3])
+      msg.total_gst   = BigDecimal.new(data[-1][4])
 
       # return the results
       return msg

@@ -16,6 +16,9 @@ class InvoiceTest < Test::Unit::TestCase
     msg = RVista::Invoice.load_from_file(VALID)
     assert_kind_of RVista::Invoice, msg
     assert_equal msg.items.size, 2
+    assert_equal msg.total_value, BigDecimal.new("25.00")
+    assert_equal msg.total_qty, BigDecimal.new("5")
+    assert_equal msg.total_gst, BigDecimal.new("2.50")
 
     validate_msg(msg)
   end
