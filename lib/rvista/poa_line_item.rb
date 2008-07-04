@@ -12,6 +12,19 @@ module RVista
     attr_accessor :status_code, :demand_qty, :rrp, :discount_percent
     attr_accessor :availability_date, :text
 
+    STATUS = {
+      1 => "Shipped as ordered",
+      2 => "Title substituted",
+      6 => "Out of stock – reprinting",
+      7 => "Back ordered",
+      9 => "Part supply",
+      10 => "Part back ordered",
+      15 => "Market restricted",
+      27 => "ISBN not recognised",
+      28 => "Out of print",
+      29 => "Customer backordered"
+    }
+
     # returns a new RVista::POALineItem object using the data passed in as an
     # array. The array should have exactly 14 items in it. Refer to the Vista
     # standard to see what those 14 items should be.
@@ -36,6 +49,10 @@ module RVista
       item.text = data[19]
 
       return item
+    end
+
+    def status_text
+      STATUS[status_code.to_i]
     end
     
     # output a string that represents this line item that meets the vista spec
