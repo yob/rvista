@@ -52,7 +52,7 @@ module RVista
       # message line items
       @items.each do |item| 
         msg << item.to_s << "\n"
-        total_value += item.value
+        total_value += item.nett_value + item.gst
         total_qty   += item.qty
         total_gst   += item.gst
       end

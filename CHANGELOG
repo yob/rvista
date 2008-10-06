@@ -1,3 +1,12 @@
+v0.5.4 (7th October 2008)
+- Fix calculation of footer totals in RVista::Invoice#to_s
+
+v0.5.3 (4th July 2008)
+- Add RVista::POA#status_text
+
+v0.5.2 (2nd July 2008)
+- Add support for retrieving invoice totals
+
 v0.5.1 (12th November 2007)
 * Added RVista::Message and PO::LineItem classes for backwards compatability with =< v0.2. A deprecation warning will be printed to stderr.
 

@@ -3,3 +3,6 @@ where the format originates from, but it is used by the PACSTREAM
 service to share electronic orders within the book industry in
 Australia.
 
+= Installation
+
+gem install rvista

@@ -57,7 +57,6 @@ module RVista
       # message summary
       msg << "S,#{@items.size.to_s},\n"
 
-
       return msg
     end
 
