@@ -54,8 +54,10 @@ module RVista
       # message line items
       @items.each { |item| msg << item.to_s << "\n"}
 
+      total_qty = @items.inject(0) { |sum, item| sum+item.demand_qty }
+
       # message summary
-      msg << "S,#{@items.size.to_s},\n"
+      msg << "S,#{@items.size.to_s},#{total_qty}\n"
 
       return msg
     end
