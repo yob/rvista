@@ -1,3 +1,6 @@
+v0.5.6 (XXX)
+- Cap field lengths in invoices to the max allowed by the spec
+
 v0.5.5 (15th October 2008)
 - Ensure RVista::POA#to_s includes total ordered qty in the footer
 

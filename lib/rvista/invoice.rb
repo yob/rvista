@@ -36,14 +36,14 @@ module RVista
       # message header
       msg = ""
       msg << "H,"
-      msg << "#{sender_id},"
-      msg << "#{receiver_id},"
-      msg << "#{doc_type},"
-      msg << "#{description},"
-      msg << "#{doc_number},"
-      msg << "#{doc_date},"
-      msg << "#{delivery_location},"
-      msg << "#{currency}\n"
+      msg << "#{sender_id.to_s[0,13]},"
+      msg << "#{receiver_id.to_s[0,13]},"
+      msg << "#{doc_type.to_s[0,4]},"
+      msg << "#{description.to_s[0,30]},"
+      msg << "#{doc_number.to_s[0,8]},"
+      msg << "#{doc_date.to_s[0,8]},"
+      msg << "#{delivery_location.to_s[0,10]},"
+      msg << "#{currency.to_s[0,4]}\n"
       
       total_value = BigDecimal.new("0")
       total_qty   = BigDecimal.new("0")

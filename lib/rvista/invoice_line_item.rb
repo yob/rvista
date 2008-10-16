@@ -50,13 +50,13 @@ module RVista
     def to_s
       msg = ""
       msg << "D," 
-      msg << "#{line_num},"
-      msg << "#{po_number},"
-      msg << "#{qualifier},"
-      msg << "#{ean},"
-      msg << "#{description},"
-      msg << "#{qty},"
-      msg << "#{unit_measure},"
+      msg << "#{line_num.to_s[0,6]},"
+      msg << "#{po_number.to_s[0,14]},"
+      msg << "#{qualifier.to_s[0,3]},"
+      msg << "#{ean.to_s[0,35]},"
+      msg << "#{description.to_s[0,35]},"
+      msg << "#{qty.to_s[0,17]},"
+      msg << "#{unit_measure.to_s[0,3]},"
       msg << sprintf("%.2f", rrp) unless rrp.nil?
       msg << ","
       msg << sprintf("%.2f", discount_percent) unless discount_percent.nil?
