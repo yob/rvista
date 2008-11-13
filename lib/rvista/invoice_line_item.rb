@@ -57,24 +57,24 @@ module RVista
       msg << "#{description.to_s[0,35]},"
       msg << "#{qty.to_s[0,17]},"
       msg << "#{unit_measure.to_s[0,3]},"
-      msg << sprintf("%.2f", rrp) unless rrp.nil?
+      msg << sprintf("%.0f", rrp) unless rrp.nil?
       msg << ","
-      msg << sprintf("%.2f", discount_percent) unless discount_percent.nil?
+      msg << sprintf("%.0f", discount_percent) unless discount_percent.nil?
       msg << ","
-      msg << sprintf("%.2f", nett_unit_price) unless nett_unit_price.nil?
+      msg << sprintf("%.0f", nett_unit_price) unless nett_unit_price.nil?
       msg << ","
       if gst_inclusive
         msg << "Y,"
       else
         msg << ","
       end
-      msg << sprintf("%.2f", value) unless value.nil?
+      msg << sprintf("%.0f", value) unless value.nil?
       msg << ","
-      msg << sprintf("%.2f", discount_value) unless discount_value.nil?
+      msg << sprintf("%.0f", discount_value) unless discount_value.nil?
       msg << ","
-      msg << sprintf("%.2f", nett_value) unless nett_value.nil?
+      msg << sprintf("%.0f", nett_value) unless nett_value.nil?
       msg << ","
-      msg << sprintf("%.2f", gst) unless gst.nil?
+      msg << sprintf("%.0f", gst) unless gst.nil?
       msg << ","
       if firm_sale
         msg << "F"
