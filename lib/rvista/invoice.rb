@@ -60,11 +60,11 @@ module RVista
       # message summary
       msg << "S,"
       msg << "#{@items.size.to_s},"
-      msg << sprintf("%.2f", total_value)
+      msg << sprintf("%.0f", total_value)
       msg << ","
       msg << sprintf("%.0f", total_qty)
       msg << ","
-      msg << sprintf("%.2f", total_gst)
+      msg << sprintf("%.0f", total_gst)
       msg << "\n"
 
       return msg
