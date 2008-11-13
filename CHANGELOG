@@ -1,5 +1,7 @@
-v0.5.6 (XXX)
+v0.5.6 (13th November 2008)
 - Cap field lengths in invoices to the max allowed by the spec
+- Remove decimal points from monetary values
+  - all prices should be specified in cents
 
 v0.5.5 (15th October 2008)
 - Ensure RVista::POA#to_s includes total ordered qty in the footer
