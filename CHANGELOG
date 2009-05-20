@@ -1,3 +1,6 @@
+v0.6.0 (20th May 2009)
+- Ruby 1.9 compat. No behaviour changes
+
 v0.5.6 (13th November 2008)
 - Cap field lengths in invoices to the max allowed by the spec
 - Remove decimal points from monetary values
