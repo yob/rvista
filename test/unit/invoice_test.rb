@@ -16,9 +16,9 @@ class InvoiceTest < Test::Unit::TestCase
     msg = RVista::Invoice.load_from_file(VALID)
     assert_kind_of RVista::Invoice, msg
     assert_equal msg.items.size, 2
-    assert_equal msg.total_value, BigDecimal.new("25.00")
+    assert_equal msg.total_value, BigDecimal.new("2200")
     assert_equal msg.total_qty, BigDecimal.new("5")
-    assert_equal msg.total_gst, BigDecimal.new("2.50")
+    assert_equal msg.total_gst, BigDecimal.new("200")
 
     validate_msg(msg)
   end
@@ -28,14 +28,14 @@ class InvoiceTest < Test::Unit::TestCase
     msg = RVista::Invoice.load_from_string(File.read(VALID))
     assert_kind_of RVista::Invoice, msg
     assert_equal msg.items.size, 2
-    
+
     validate_msg(msg)
   end
 
   # ensure the load_from_file method throws the correct exceptions
   # when it encounters a problem
   def test_product_validation
-    
+
     assert_raise(RVista::InvalidFileError) {
       msg = RVista::Invoice.load_from_file(INVALID_MISSING_HEADER)
     }
@@ -43,7 +43,7 @@ class InvoiceTest < Test::Unit::TestCase
     assert_raise(RVista::InvalidFileError) {
       msg = RVista::Invoice.load_from_file(INVALID_MISSING_FOOTER)
     }
-    
+
     assert_raise(RVista::InvalidLineItemError) {
       msg = RVista::Invoice.load_from_file(INVALID_LINE)
     }

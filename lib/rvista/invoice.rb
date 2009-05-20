@@ -15,7 +15,7 @@ module RVista
       @items = []
     end
 
-    # reads a vista invoice file into memory. input should be a string 
+    # reads a vista invoice file into memory. input should be a string
     # that specifies the file path
     def self.load_from_file(input)
       raise InvalidFileError, 'Invalid file' unless File.exist?(input)
@@ -43,13 +43,13 @@ module RVista
       msg << "#{doc_date.to_s[0,8]},"
       msg << "#{delivery_location.to_s[0,10]},"
       msg << "#{currency.to_s[0,4]}\n"
-      
+
       total_value = BigDecimal.new("0")
       total_qty   = BigDecimal.new("0")
       total_gst   = BigDecimal.new("0")
 
       # message line items
-      @items.each do |item| 
+      @items.each do |item|
         msg << item.to_s << "\n"
         total_value += item.nett_value + item.gst
         total_qty   += item.qty
@@ -89,7 +89,7 @@ module RVista
       msg.currency    = data[0][8]
 
       # load each lineitem into the message
-      data[1,data.size - 2].each do |row| 
+      data[1,data.size - 2].each do |row|
         raise InvalidLineItemError, 'Invalid line detected' unless row[0].eql?("D")
         item = InvoiceLineItem.load_from_array(row)
         msg.items << item
@@ -97,6 +97,7 @@ module RVista
 
       raise InvalidFileError, 'Last line isn\'t a footer' unless data[-1][0].eql?("S")
       raise InvalidFileError, 'Line item count doesn\'t match footer' unless data[-1][1].to_i.eql?(msg.items.size)
+
       msg.total_value = BigDecimal.new(data[-1][2])
       msg.total_qty   = BigDecimal.new(data[-1][3])
       msg.total_gst   = BigDecimal.new(data[-1][4])
