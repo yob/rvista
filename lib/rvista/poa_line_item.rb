@@ -15,7 +15,7 @@ module RVista
     STATUS = {
       1 => "Shipped as ordered",
       2 => "Title substituted",
-      6 => "Out of stock – reprinting",
+      6 => "Out of stock - reprinting",
       7 => "Back ordered",
       9 => "Part supply",
       10 => "Part back ordered",
