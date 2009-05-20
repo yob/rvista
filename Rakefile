@@ -50,7 +50,6 @@ spec = Gem::Specification.new do |spec|
   spec.extra_rdoc_files = %w{README COPYING LICENSE}
   spec.rdoc_options << '--title' << 'rvista Documentation' <<
                        '--main'  << 'README' << '-q'
-  spec.add_dependency('fastercsv', '>= 1.2.1')
   spec.author = "James Healy"
   spec.email = "jimmy@deefa.com"
   spec.description = <<END_DESC

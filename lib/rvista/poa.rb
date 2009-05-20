@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'fastercsv'
 
 module RVista
 
