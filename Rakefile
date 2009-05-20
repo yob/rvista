@@ -31,6 +31,7 @@ desc "Create documentation"
 Rake::RDocTask.new("doc") do |rdoc|
   rdoc.title = "RVista"
   rdoc.rdoc_dir = 'doc/html'
+  rdoc.rdoc_files.include('CHANGELOG')
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('COPYING')
   rdoc.rdoc_files.include('LICENSE')
@@ -47,7 +48,7 @@ spec = Gem::Specification.new do |spec|
   spec.require_path = "lib"
   spec.test_files = Dir[ "test/test_*.rb" ]
   spec.has_rdoc = true
-  spec.extra_rdoc_files = %w{README COPYING LICENSE}
+  spec.extra_rdoc_files = %w{README COPYING LICENSE CHANGELOG}
   spec.rdoc_options << '--title' << 'rvista Documentation' <<
                        '--main'  << 'README' << '-q'
   spec.author = "James Healy"
