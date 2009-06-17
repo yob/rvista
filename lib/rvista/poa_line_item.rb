@@ -14,19 +14,6 @@ module RVista
     attr_accessor :status_code, :demand_qty, :rrp, :discount_percent
     attr_accessor :availability_date, :text
 
-    STATUS = {
-      1 => "Shipped as ordered",
-      2 => "Title substituted",
-      6 => "Out of stock - reprinting",
-      7 => "Back ordered",
-      9 => "Part supply",
-      10 => "Part back ordered",
-      15 => "Market restricted",
-      27 => "ISBN not recognised",
-      28 => "Out of print",
-      29 => "Customer backordered"
-    }
-
     # returns a new RVista::POALineItem object using the data passed in as an
     # array. The array should have exactly 14 items in it. Refer to the Vista
     # standard to see what those 14 items should be.
@@ -54,7 +41,39 @@ module RVista
     end
 
     def status_text
-      STATUS[status_code.to_i]
+      case self.status_code.to_i
+      when 1  then "Accepted: Title Shipped As Ordered"
+      when 2  then "Accepted: Substitute Title Shipped As Ordered"
+      when 3  then "Cancelled: Future Publication"
+      when 4  then "Cancelled: Future Publication" # date available
+      when 5  then "Backordered: Future Publication"
+      when 6  then "Cancelled: Out of Stock"
+      when 7  then "Backordered: Out of Stock"
+      when 8  then "Cancelled: Out of Print"
+      when 9  then "Partial Ship: Cancel Rest"
+      when 10 then "Partial Ship: Backorder Rest"
+      when 11 then "Cancelled: HB Out of Print, PB Available"
+      when 12 then "Cancelled: PB Out of Print, HB Available"
+      when 13 then "Cancelled: Out of Print, Alt. Edition Available"
+      when 14 then "Backordered: Subtitute Title on BO."
+      when 15 then "Cancelled: No Rights"
+      when 16 then "Cancelled: Not our Publication"
+      when 17 then "Accepted: Free Book"
+      when 18 then "Cancelled: BO Expired"
+      when 19 then "Cancelled: Subscription Only"
+      when 20 then "Cancelled: Not Carried"
+      when 21 then "Cancelled: Not Carried"
+      when 22 then "Cancelled: Import Title"
+      when 23 then "Cancelled: Not Available for Wholesale"
+      when 24 then "Cancelled: Kits Not Available"
+      when 25 then "Cancelled: Not Available"
+      when 26 then "Cancelled: New Price From Publisher"
+      when 27 then "Cancelled: ISBN Not Recognised"
+      when 28 then "Cancelled: Out of Print"
+      when 29 then "Backordered: At Customers Request"
+      else
+        "UNKNOWN"
+      end
     end
     
     # output a string that represents this line item that meets the vista spec
