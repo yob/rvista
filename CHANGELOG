@@ -1,3 +1,6 @@
+v0.6.1 (17th June 2009)
+- improve return values from RVista::POALineItem#status_text
+
 v0.6.0 (20th May 2009)
 - Ruby 1.9 compat. No behaviour changes
 
