@@ -19,14 +19,14 @@ module RVista
     # that specifies the file path
     def self.load_from_file(input)
       raise InvalidFileError, 'Invalid file' unless File.exist?(input)
-      data = FasterCSV.read(input)
+      data = FasterCSV.read(input, :quote_char => "`")
       return self.build_message(data)
     end
 
     # creates a RVista::POA object from a string. Input should
     # be a complete vista file as a string
     def self.load_from_string(input)
-      data = FasterCSV.parse(input)
+      data = FasterCSV.parse(input, :quote_char => "`")
       return self.build_message(data)
     end
 

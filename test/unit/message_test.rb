@@ -6,6 +6,7 @@ require 'rvista'
 class POTest < Test::Unit::TestCase
 
   VALID = File.dirname(__FILE__) + "/../data/po/valid.txt"
+  VALID_QUOTES = File.dirname(__FILE__) + "/../data/po/quotes.txt"
   INVALID_MISSING_HEADER = File.dirname(__FILE__) + "/../data/po/invalid_missing_header.txt"
   INVALID_MISSING_FOOTER = File.dirname(__FILE__) + "/../data/po/invalid_missing_footer.txt"
   INVALID_LINE = File.dirname(__FILE__) + "/../data/po/invalid_line.txt"
@@ -18,7 +19,6 @@ class POTest < Test::Unit::TestCase
     assert_equal msg.items.size, 38
 
     validate_msg(msg)
-      
   end
 
   # ensure the load_from_file method works as expected
@@ -26,14 +26,23 @@ class POTest < Test::Unit::TestCase
     msg = RVista::PO.load_from_string(File.read(VALID))
     assert_kind_of RVista::PO, msg
     assert_equal msg.items.size, 38
-    
+
     validate_msg(msg)
+  end
+
+  # ensure files that (probably incorrectly) contain quotes can be
+  # parsed.
+  #
+  def test_files_with_quotes
+    msg = RVista::PO.load_from_string(File.read(VALID_QUOTES))
+    assert_kind_of RVista::PO, msg
+    assert_equal msg.items.size, 11
   end
 
   # ensure the load_from_file method throws the correct exceptions
   # when it encounters a problem
   def test_product_validation
-    
+
     assert_raise(RVista::InvalidFileError) {
       msg = RVista::PO.load_from_file(INVALID_MISSING_HEADER)
     }
@@ -41,7 +50,7 @@ class POTest < Test::Unit::TestCase
     assert_raise(RVista::InvalidFileError) {
       msg = RVista::PO.load_from_file(INVALID_MISSING_FOOTER)
     }
-    
+
     assert_raise(RVista::InvalidLineItemError) {
       msg = RVista::PO.load_from_file(INVALID_LINE)
     }
