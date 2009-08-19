@@ -63,7 +63,7 @@ class POALineItemTest < Test::Unit::TestCase
 
   def test_status_text
     item = RVista::POALineItem.load_from_array(@row)
-    assert_equal item.status_text, "Shipped as ordered"
+    assert_equal "Accepted: Title Shipped As Ordered", item.status_text
   end
 
   def test_to_s
