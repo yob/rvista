@@ -79,10 +79,10 @@ class POTest < Test::Unit::TestCase
     assert_equal msg.po_subset_code, nil
     assert_equal msg.purpose_code, "00"
     assert_equal msg.purpose_desc, nil
-    assert_equal msg.date, "060915"
+    assert_equal msg.date, Chronic.parse("2006-09-15")
     assert_equal msg.myer_code, nil
-    assert_equal msg.supply_after, "000000"
-    assert_equal msg.supply_before, "000000"
+    assert_equal msg.supply_after, nil
+    assert_equal msg.supply_before, nil
     assert_equal msg.advertised_date, nil
     assert_equal msg.department, nil
     assert_equal msg.supplier_ref, nil

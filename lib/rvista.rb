@@ -1,6 +1,6 @@
 # coding: utf-8
 
-require 'rubygems'
+require 'chronic'
 
 # faster csv is distributed with ruby 1.9 as "CSV", so we only
 # need to load the gem on ruby < 1.9

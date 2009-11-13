@@ -6,9 +6,8 @@ module RVista
   class PO
 
     attr_accessor :sender_id, :receiver_id, :internal_control_number, :po_number
-    attr_accessor :po_subset_code, :purpose_code, :purpose_desc, :date
-    attr_accessor :myer_code, :supply_after, :supply_before, :advertised_date
-    attr_accessor :department, :supplier_ref, :buying_location
+    attr_accessor :po_subset_code, :purpose_code, :purpose_desc
+    attr_accessor :myer_code, :department, :supplier_ref, :buying_location
     attr_accessor :buying_location_name, :delivery_location
     attr_accessor :delivery_location_name, :label_code
     attr_accessor :items
@@ -16,6 +15,10 @@ module RVista
     # creates a new RVista::PO object
     def initialize
       @items = []
+      @date = nil
+      @supply_before = nil
+      @supply_after = nil
+      @advertised_date = nil
     end
 
     # reads a vista text file into memory. input should be a string 
@@ -33,6 +36,38 @@ module RVista
       return self.build_message(data)
     end
 
+    def date
+      vista_string_to_date(@date)
+    end
+
+    def date=(val)
+      @date = process_date(val)
+    end
+
+    def supply_after
+      vista_string_to_date(@supply_after)
+    end
+
+    def supply_after=(val)
+      @supply_after = process_date(val)
+    end
+
+    def supply_before
+      vista_string_to_date(@supply_before)
+    end
+
+    def supply_before=(val)
+      @supply_before = process_date(val)
+    end
+
+    def advertised_date
+      vista_string_to_date(@advertised_date)
+    end
+
+    def advertised_date=(val)
+      @advertised_date = process_date(val)
+    end
+
     # print a string representation of this order that meets the spec
     def to_s
       # message header
@@ -45,11 +80,11 @@ module RVista
       msg << "#{po_subset_code},"
       msg << "#{purpose_code},"
       msg << "#{purpose_desc},"
-      msg << "#{date},"
+      msg << "#{@date},"
       msg << "#{myer_code},"
-      msg << "#{supply_after},"
-      msg << "#{supply_before},"
-      msg << "#{advertised_date},"
+      msg << "#{@supply_after},"
+      msg << "#{@supply_before},"
+      msg << "#{@advertised_date},"
       msg << "#{department},"
       msg << "#{supplier_ref},"
       msg << "#{buying_location},"
@@ -63,7 +98,6 @@ module RVista
 
       # message summary
       msg << "S,#{@items.size.to_s},,\n"
-
 
       return msg
     end
@@ -109,6 +143,25 @@ module RVista
 
       # return the results
       return msg
+    end
+
+    def vista_string_to_date(str)
+      if str.nil? || str.to_s[0,2] == "00" || str.to_s.size != 8
+        nil
+      else
+        year  = "20#{str[6,2]}"
+        month = str[3,2]
+        day   = str[0,2]
+        Chronic.parse("#{year}-#{month}-#{day}")
+      end
+    end
+
+    def process_date(value)
+      if value.respond_to?(:strftime)
+        value.strftime("%d-%m-%y")
+      else
+        value
+      end
     end
   end
 
