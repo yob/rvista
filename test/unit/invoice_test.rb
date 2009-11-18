@@ -69,7 +69,7 @@ class InvoiceTest < Test::Unit::TestCase
     assert_equal msg.doc_type, "IN"
     assert_equal msg.description, "Invoice"
     assert_equal msg.doc_number, "5678"
-    assert_equal msg.doc_date, "071011"
+    assert_equal msg.doc_date, Chronic.parse("2007-10-11")
     assert_equal msg.delivery_location, "1111111"
     assert_equal msg.currency, nil
   end

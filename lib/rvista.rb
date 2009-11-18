@@ -22,6 +22,7 @@ end
 
 
 require File.dirname(__FILE__) + '/rvista/errors'
+require File.dirname(__FILE__) + '/rvista/message'
 require File.dirname(__FILE__) + '/rvista/invoice'
 require File.dirname(__FILE__) + '/rvista/invoice_line_item'
 require File.dirname(__FILE__) + '/rvista/po'

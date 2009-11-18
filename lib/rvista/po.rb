@@ -3,7 +3,7 @@
 module RVista
 
   # Represents a single Vista message (purchase order).
-  class PO
+  class PO < Message
 
     attr_accessor :sender_id, :receiver_id, :internal_control_number, :po_number
     attr_accessor :po_subset_code, :purpose_code, :purpose_desc
@@ -143,33 +143,6 @@ module RVista
 
       # return the results
       return msg
-    end
-
-    def vista_string_to_date(str)
-      if str.nil? || str.to_s[0,2] == "00" || str.to_s.size != 8
-        nil
-      else
-        year  = "20#{str[6,2]}"
-        month = str[3,2]
-        day   = str[0,2]
-        Chronic.parse("#{year}-#{month}-#{day}")
-      end
-    end
-
-    def process_date(value)
-      if value.respond_to?(:strftime)
-        value.strftime("%d-%m-%y")
-      else
-        value
-      end
-    end
-  end
-
-  class Message < PO
-
-    def initialize
-      $stderr.puts "WARNING: RVista::Message is a deprecated class. Please use RVista::PO instead."
-      super
     end
   end
 end

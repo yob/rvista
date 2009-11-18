@@ -66,9 +66,9 @@ class POATest < Test::Unit::TestCase
     assert_equal msg.sender_id, "1111111"
     assert_equal msg.receiver_id, "2222222"
     assert_equal msg.po_number, "1234"
-    assert_equal msg.date, "060915"
-    assert_equal msg.supply_after, "071010"
-    assert_equal msg.supply_before, "071030"
+    assert_equal msg.date, Chronic.parse("2006-09-15")
+    assert_equal msg.supply_after, Chronic.parse("2007-10-10")
+    assert_equal msg.supply_before, Chronic.parse("2007-10-30")
     assert_equal msg.delivery_location, "1111111"
     assert_equal msg.delivery_location_name, "Some Store"
   end

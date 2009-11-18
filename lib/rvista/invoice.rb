@@ -3,16 +3,17 @@
 module RVista
 
   # Represents a single Vista Invoice
-  class Invoice
+  class Invoice < Message
 
     attr_accessor :sender_id, :receiver_id, :doc_type, :description
-    attr_accessor :doc_number, :doc_date, :delivery_location, :currency
+    attr_accessor :doc_number, :delivery_location, :currency
     attr_accessor :items
     attr_accessor :total_value, :total_qty, :total_gst
 
     # creates a new RVista::Invoice object
     def initialize
       @items = []
+      @doc_date = nil
     end
 
     # reads a vista invoice file into memory. input should be a string
@@ -30,6 +31,14 @@ module RVista
       return self.build_message(data)
     end
 
+    def doc_date
+      vista_string_to_date(@doc_date)
+    end
+
+    def doc_date=(val)
+      @doc_date = process_date(val)
+    end
+
     # print a string representation of this order that meets the spec
     def to_s
       # message header
@@ -40,7 +49,7 @@ module RVista
       msg << "#{doc_type.to_s[0,4]},"
       msg << "#{description.to_s[0,30]},"
       msg << "#{doc_number.to_s[0,8]},"
-      msg << "#{doc_date.to_s[0,8]},"
+      msg << "#{@doc_date},"
       msg << "#{delivery_location.to_s[0,10]},"
       msg << "#{currency.to_s[0,4]}\n"
 

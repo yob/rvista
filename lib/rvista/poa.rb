@@ -3,16 +3,18 @@
 module RVista
 
   # Represents a single Vista Purchase Order Ack (POA).
-  class POA
+  class POA < Message
 
-    attr_accessor :sender_id, :receiver_id, :po_number, :date
-    attr_accessor :supply_after, :supply_before, :delivery_location
-    attr_accessor :delivery_location_name
+    attr_accessor :sender_id, :receiver_id, :po_number
+    attr_accessor :delivery_location, :delivery_location_name
     attr_accessor :items
 
     # creates a new RVista::POA object
     def initialize
       @items = []
+      @date = nil
+      @supply_before = nil
+      @supply_after = nil
     end
 
     # reads a vista poa file into memory. input should be a string 
@@ -30,6 +32,30 @@ module RVista
       return self.build_message(data)
     end
 
+    def date
+      vista_string_to_date(@date)
+    end
+
+    def date=(val)
+      @date = process_date(val)
+    end
+
+    def supply_after
+      vista_string_to_date(@supply_after)
+    end
+
+    def supply_after=(val)
+      @supply_after = process_date(val)
+    end
+
+    def supply_before
+      vista_string_to_date(@supply_before)
+    end
+
+    def supply_before=(val)
+      @supply_before = process_date(val)
+    end
+
     # print a string representation of this order that meets the spec
     def to_s
       # message header
@@ -42,10 +68,10 @@ module RVista
       msg << ","
       msg << ","
       msg << "#{po_number},"
-      msg << "#{date},"
+      msg << "#{@date},"
       msg << ","
-      msg << "#{supply_after},"
-      msg << "#{supply_before},"
+      msg << "#{@supply_after},"
+      msg << "#{@supply_before},"
       msg << "SP,"
       msg << "#{delivery_location},"
       msg << "#{delivery_location_name}\n"
