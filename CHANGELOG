@@ -1,7 +1,10 @@
+v0.6.5 (16th January 2010)
+- RVista::POA: handle invalid looking numbers sanely
+
 v0.6.4 (18th November 2009)
 - RVista::POA, RVista::Invoice
-- Use correct vista date format (dd-mm-yy)
-- return dates as ruby date objects
+  - Use correct vista date format (dd-mm-yy)
+  - return dates as ruby date objects
 
 v0.6.3 (13th November 2009)
 - RVista::PO

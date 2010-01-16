@@ -5,7 +5,7 @@ require 'rake/testtask'
 require "rake/gempackagetask"
 require "rubygems"
 
-PKG_VERSION = "0.6.4"
+PKG_VERSION = "0.6.5"
 PKG_NAME = "rvista"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
