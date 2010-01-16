@@ -1,5 +1,6 @@
 # coding: utf-8
 
+require 'andand'
 require 'chronic'
 
 # faster csv is distributed with ruby 1.9 as "CSV", so we only

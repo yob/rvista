@@ -53,6 +53,7 @@ spec = Gem::Specification.new do |spec|
                        '--main'  << 'README' << '-q'
   spec.author = "James Healy"
   spec.email = "jimmy@deefa.com"
+  spec.add_dependency('andand')
   spec.add_dependency('chronic')
   spec.description = <<END_DESC
   rvista is a small library for reading Vista HDS order files.
