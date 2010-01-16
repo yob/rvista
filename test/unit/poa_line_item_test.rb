@@ -74,6 +74,18 @@ class POALineItemTest < Test::Unit::TestCase
     assert_equal 20, arr.size
   end
 
+  def test_to_s_with_invalid_decimals
+    item = RVista::POALineItem.load_from_array(@row)
+    item.nett_unit_price = ""
+    item.rrp = ""
+    item.tax_rate = ""
+    item.discount_percent = ""
+
+    str = item.to_s
+    arr = FasterCSV.parse(str).first
+    assert_equal 20, arr.size
+  end
+
 end
 
 

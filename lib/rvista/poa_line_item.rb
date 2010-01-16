@@ -34,7 +34,7 @@ module RVista
       item.demand_qty = data[15].to_i
       item.rrp = BigDecimal.new(data[16]) unless data[16].nil?
       item.discount_percent = BigDecimal.new(data[17]) unless data[17].nil?
-      item.availability_date = data[18] # TODO: convert this to a Date? 
+      item.availability_date = data[18] # TODO: convert this to a Date?
       item.text = data[19]
 
       return item
@@ -75,21 +75,22 @@ module RVista
         "UNKNOWN"
       end
     end
-    
+
     # output a string that represents this line item that meets the vista spec
     def to_s
+      nil_numeric_values
+      normalise_numeric_values
+
       msg = ""
-      msg << "D," 
+      msg << "D,"
       msg << "#{line_num},"
       msg << "#{ean},"
       msg << ","
       msg << "#{description},"
-      msg << sprintf("%.2f", nett_unit_price) unless nett_unit_price.nil?
-      msg << ","
+      msg << "#{formatted_nett_unit_price},"
       msg << "1,"
       msg << "#{qty_inners},"
-      msg << sprintf("%.2f", tax_rate) unless tax_rate.nil?
-      msg << ","
+      msg << "#{formatted_tax_rate},"
       msg << ","
       msg << "#{buying_location},"
       msg << "#{buying_location_name},"
@@ -97,13 +98,47 @@ module RVista
       msg << "#{delivered_qty},"
       msg << "#{status_code},"
       msg << "#{demand_qty},"
-      msg << sprintf("%.2f", rrp) unless rrp.nil?
-      msg << ","
-      msg << sprintf("%.2f", discount_percent) unless discount_percent.nil?
-      msg << ","
+      msg << "#{formatted_rrp},"
+      msg << "#{formatted_discount_percent},"
       msg << "#{availability_date},"
       msg << "#{text}"
       return msg
+    end
+
+    private
+
+    # ensure all decimal attributes are BigDecimals
+    #
+    def nil_numeric_values
+      self.nett_unit_price = nil  if self.nett_unit_price.to_s.size == 0
+      self.tax_rate = nil         if self.tax_rate.to_s.size == 0
+      self.rrp = nil              if self.rrp.to_s.size == 0
+      self.discount_percent = nil if self.discount_percent.to_s.size == 0
+    end
+
+    # set empty numerics to nil
+    #
+    def normalise_numeric_values
+      self.nett_unit_price = BigDecimal.new(self.nett_unit_price.to_s) unless self.nett_unit_price.nil?
+      self.tax_rate = BigDecimal.new(self.tax_rate.to_s) unless self.tax_rate.nil?
+      self.rrp = BigDecimal.new(self.rrp.to_s) unless self.rrp.nil?
+      self.discount_percent = BigDecimal.new(self.discount_percent.to_s) unless self.discount_percent.nil?
+    end
+
+    def formatted_nett_unit_price
+      self.nett_unit_price.nil? ? "" : "%.2f" % self.nett_unit_price
+    end
+
+    def formatted_tax_rate
+      self.tax_rate.nil? ? "" : "%.2f" % self.tax_rate
+    end
+
+    def formatted_rrp
+      self.rrp.nil? ? "" : "%.2f" % self.rrp
+    end
+
+    def formatted_discount_percent
+      self.discount_percent.nil? ? "" : "%.2f" % self.discount_percent
     end
   end
 end
