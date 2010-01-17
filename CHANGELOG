@@ -1,3 +1,6 @@
+v0.6.6 (18th January 2010)
+- RVista::PO: small tweak to interpretation of backorder field
+
 v0.6.5 (16th January 2010)
 - RVista::POA: handle invalid looking numbers sanely
 
