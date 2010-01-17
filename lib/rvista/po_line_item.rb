@@ -30,7 +30,7 @@ module RVista
       item.retail_unit_price = BigDecimal.new(data[8]) unless data[8].nil?
       item.was_unit_price = BigDecimal.new(data[9]) unless data[9].nil?
       item.discount = data[10].to_i unless data[10].nil?
-      item.backorder = data[11] == "Y" ? true : false
+      item.backorder = data[11] == "N" ? false : true
       item.additional_discount = data[12]
       item.firm_sale = data[13]
 
