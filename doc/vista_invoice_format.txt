@@ -17,7 +17,7 @@ Header Line
 ######################################
 
 Field   Label   Description         Type    Max Length      Notes
-001       H     Header               A        00001         “H” 
+001       H     Header               A        00001         “H”
 002       H     Sender-Id            AN       00013         Sender’s SAN
 003       H     Receiver-Id          AN       00013         Receiver’s SAN
 004       H     Document Type        A        00004         “IN”,”CR”
@@ -34,20 +34,20 @@ Line Items
 Field   Label   Description            Type    Max Length     Notes
 001       D     Detail                  A       00001         “D”
 002       D     Line #                  N       00006         1,2,3 etc
-003       D     Purchase Order          AN      00014         Customer Reference 
+003       D     Purchase Order          AN      00014         Customer Reference
 004       D     Product # Qualifier     AN      00003         “EN” for ISBN13
 005       D     EAN Product Number      AN      00035         ISBN13 or “CHARGE”
 006       D     Product Description     AN      00035         Title or Charge Type
 007       D     Quantity                N       00017         Delivered Qty
 008       D     Unit Measure            AN      00003         “EA”
 009       D     Retail Unit Price       N2      00016         Unit RRP
-010       D     Disc-%                  N2      00016         Discount Percentage 
-011       D     Net Unit Price          N2      00016         Unit cost excl. GST
+010       D     Disc-%                  N2      00016         Discount Percentage
+011       D     Net Unit Price          N2      00016         Nett unit cost excl. GST
 012       D     GST inclusive/exclusive A       00001         “Y” = Inclusive or blank
 013       D     Value                   N2      00016         Line RRP total
 014       D     Discount Value          N2      00016         Line discount inc. GST
 015       D     Net Value               N2      00016         Line cost excl. GST
-016       D     GST                     N2      00016 
+016       D     GST                     N2      00016
 017       D     Firm Sale               AN      00001         “F” = Firm Sale
 
 ######################################
