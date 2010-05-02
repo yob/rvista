@@ -1,7 +1,4 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../../lib')
-
-require 'test/unit'
-require 'rvista'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class POALineItemTest < Test::Unit::TestCase
 
