@@ -1,30 +1,20 @@
-require 'rake'
-require 'rake/clean'
-require 'rake/rdoctask'
-require 'rake/testtask'
-require "rake/gempackagetask"
 require "rubygems"
+require "bundler"
+Bundler.setup
 
-PKG_VERSION = "0.6.6"
-PKG_NAME = "rvista"
-PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
-
-CLEAN.include "**/.*.sw*"
+require 'rspec/core/rake_task'
+require 'rake'
+require 'rake/rdoctask'
 
 desc "Default Task"
-task :default => [ :test ]
+task :default => [ :spec ]
 
-# Run all tests
-desc "Run all test"
-task :test => [ :test_units ]
-
-# Run the unit tests
-desc "Run all unit tests"
-Rake::TestTask.new("test_units") { |t|
-  t.pattern = 'test/unit/**/*_test.rb'
-  t.verbose = true
-  t.warning = true
-}
+# run all rspecs
+desc "Run all rspec files"
+RSpec::Core::RakeTask.new("spec") do |t|
+  t.rspec_opts  = ["--color", "--format progress"]
+  t.ruby_opts = "-w"
+end
 
 # Genereate the RDoc documentation
 desc "Create documentation"
@@ -38,40 +28,3 @@ Rake::RDocTask.new("doc") do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.options << "--inline-source"
 end
-
-spec = Gem::Specification.new do |spec|
-  spec.name = PKG_NAME
-  spec.version = PKG_VERSION
-  spec.platform = Gem::Platform::RUBY
-  spec.summary = "A small library for reading Vista HDS ecommerce files"
-  spec.files =  Dir.glob("{examples,lib,test}/**/**/*") + ["Rakefile"]
-  spec.require_path = "lib"
-  spec.test_files = Dir[ "test/test_*.rb" ]
-  spec.has_rdoc = true
-  spec.extra_rdoc_files = %w{README COPYING LICENSE CHANGELOG}
-  spec.rdoc_options << '--title' << 'rvista Documentation' <<
-                       '--main'  << 'README' << '-q'
-  spec.author = "James Healy"
-  spec.email = "jimmy@deefa.com"
-  spec.add_dependency('andand')
-  spec.add_dependency('chronic')
-  spec.add_dependency('fastercsv', "~> 1.5.0")
-  spec.description = <<END_DESC
-  rvista is a small library for reading Vista HDS order files.
-END_DESC
-end
-
-desc "Generate a gem for rvista"
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.need_zip = true
-  pkg.need_tar = true
-end
-
-desc "Report code statistics (KLOCs, etc) from the application"
-task :stats do
-  require 'vendor/code_statistics'
-  #dirs = [["Library", "lib"],["Functional tests", "test/functional"],["Unit tests", "test/unit"]]
-  dirs = [["Library", "lib"],["Unit tests", "test/unit"]]
-  CodeStatistics.new(*dirs).to_s
-end
-

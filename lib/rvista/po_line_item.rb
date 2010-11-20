@@ -18,7 +18,7 @@ module RVista
     # standard to see what those 14 items should be.
     def self.load_from_array(data)
       item = self.new
-      raise InvalidLineItemError, 'incorrect number of data points' unless data.size == 14
+      raise InvalidLineItemError, "incorrect number of data points (#{data.inspect})" unless data.size == 14
 
       item.line_num = data[1].to_i
       item.qualifier = data[2]
