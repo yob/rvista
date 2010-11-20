@@ -11,14 +11,14 @@ else
   require "fastercsv"
 end
 
-require File.dirname(__FILE__) + '/rvista/errors'
-require File.dirname(__FILE__) + '/rvista/message'
-require File.dirname(__FILE__) + '/rvista/invoice'
-require File.dirname(__FILE__) + '/rvista/invoice_line_item'
-require File.dirname(__FILE__) + '/rvista/po'
-require File.dirname(__FILE__) + '/rvista/po_line_item'
-require File.dirname(__FILE__) + '/rvista/poa'
-require File.dirname(__FILE__) + '/rvista/poa_line_item'
+require 'rvista/errors'
+require 'rvista/message'
+require 'rvista/invoice'
+require 'rvista/invoice_line_item'
+require 'rvista/po'
+require 'rvista/po_line_item'
+require 'rvista/poa'
+require 'rvista/poa_line_item'
 
 # Ruby module for reading Vista HDS EDI files
 #
