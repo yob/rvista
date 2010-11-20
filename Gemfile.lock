@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rvista (0.6.6)
+    rvista (0.6.7)
       andand
       chronic
       fastercsv (~> 1.5.0)
