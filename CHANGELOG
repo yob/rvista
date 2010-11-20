@@ -1,3 +1,6 @@
+v0.6.7 (20th November 2010)
+- depend on fastercsv gem, forces bundler to include it on the load path
+
 v0.6.6 (18th January 2010)
 - RVista::PO: small tweak to interpretation of backorder field
 
