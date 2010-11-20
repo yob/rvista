@@ -55,6 +55,7 @@ spec = Gem::Specification.new do |spec|
   spec.email = "jimmy@deefa.com"
   spec.add_dependency('andand')
   spec.add_dependency('chronic')
+  spec.add_dependency('fastercsv', "~> 1.5.0")
   spec.description = <<END_DESC
   rvista is a small library for reading Vista HDS order files.
 END_DESC
