@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
                        '--main'  << 'README' << '-q'
   spec.author = "James Healy"
   spec.email = "jimmy@deefa.com"
+  spec.homepage = "https://github.com/yob/rvista"
 
   spec.add_development_dependency('rake')
   spec.add_development_dependency('rspec', "~> 2.1.0")
