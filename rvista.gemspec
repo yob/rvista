@@ -13,11 +13,11 @@ Gem::Specification.new do |spec|
   spec.email = "jimmy@deefa.com"
   spec.homepage = "https://github.com/yob/rvista"
 
+  spec.required_ruby_version = ">=1.9.1"
+
   spec.add_development_dependency('rake')
-  spec.add_development_dependency('rspec', "~> 2.1.0")
+  spec.add_development_dependency('rspec', "~> 2.1")
 
   spec.add_dependency('andand')
   spec.add_dependency('chronic')
-  spec.add_dependency('fastercsv', "~> 1.5.0")
 end
-

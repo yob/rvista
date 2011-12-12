@@ -64,13 +64,13 @@ describe RVista::POLineItem do
   it "should correctly convert to a string" do
     item = RVista::POLineItem.load_from_array(@row)
     str = item.to_s
-    arr = FasterCSV.parse(str).first
+    arr = CSV.parse(str).first
 
     arr.size.should == 14
 
     item = RVista::POLineItem.load_from_array(@row2)
     str = item.to_s
-    arr = FasterCSV.parse(str).first
+    arr = CSV.parse(str).first
 
     arr.size.should == 14
   end

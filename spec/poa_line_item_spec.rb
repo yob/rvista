@@ -61,7 +61,7 @@ describe RVista::POALineItem do
   it "should correctly convert to a string" do
     item = RVista::POALineItem.load_from_array(@row)
     str = item.to_s
-    arr = FasterCSV.parse(str).first
+    arr = CSV.parse(str).first
 
     arr.size.should == 20
   end
@@ -74,7 +74,7 @@ describe RVista::POALineItem do
     item.discount_percent = ""
 
     str = item.to_s
-    arr = FasterCSV.parse(str).first
+    arr = CSV.parse(str).first
     arr.size.should == 20
   end
 

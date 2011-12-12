@@ -2,14 +2,7 @@
 
 require 'andand'
 require 'chronic'
-
-# FasterCSV is included in the 1.9 standard library as CSV
-if RUBY_VERSION >= "1.9"
-  require 'csv'
-  FasterCSV = FCSV = CSV
-else
-  require "fastercsv"
-end
+require 'csv'
 
 require 'rvista/errors'
 require 'rvista/message'
