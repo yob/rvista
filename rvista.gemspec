@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "rvista"
-  spec.version = "0.6.7"
+  spec.version = "0.7.0"
   spec.summary = "A small library for reading Vista HDS ecommerce files"
   spec.description = "rvista is a small library for reading Vista HDS files."
   spec.files =  Dir.glob("{examples,lib}/**/**/*") + ["Rakefile"]

@@ -1,3 +1,6 @@
+v0.7.0 (12th December 2011)
+- use csv from the standard lib instead of fastercsv
+
 v0.6.7 (20th November 2010)
 - depend on fastercsv gem, forces bundler to include it on the load path
 
