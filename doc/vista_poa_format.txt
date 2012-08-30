@@ -80,13 +80,33 @@ Field   Label   Description          Type    Max Length    Notes
 #####################################3
 Status Codes
 #####################################3
-01  Shipped as ordered
-02  Title substituted
-06  Out of stock – reprinting
-07  Back ordered
-09  Part supply
-10  Part back ordered
-15  Market restricted
-27  ISBN not recognised
-28  Out of print
-29  Customer backordered
+01      Title billed and shipped as ordered.
+02      Title was substituted for the title that was ordered.
+03      Order for the title is cancelled – the title is a future publication and the publication date is not yet available.
+04      Order for the title is cancelled – the title is a future publication and the publication date is shown.
+05      Order for the title is backordered – the title is a future publication and the publication date is shown.
+06      Order for the title is cancelled – the title is out of stock and is being reprinted.
+07      Order for the title is being backordered – the title is out of stock and is being reprinted.
+08      Order for the title is cancelled – the title is out of stock and not being reprinted.
+09      Order for the title is partially filled and shipped and the remainder of the order has been cancelled.
+10      Order for the title is partially filled and shipped and the remainder if the order has been backordered.
+11      Out of print in cloth, but available in paper – re-order required.
+12      Out of print in paper, but available in cloth – re-order required.
+13      New edition is being printed and a cancelled edition was ordered, the order is cancelled – re-order required specifying the desired edition.
+14      New edition is being printed and a cancelled edition was ordered, a backorder was placed for the new edition.
+15      Market for the title is restricted, the order is cancelled.
+16      Not our publication.
+17      Free book.
+18      Order cancelled – Publisher did not respond by your cancellation date.
+19      Order cancelled – books sold by subscription only.
+20      Order cancelled – we do not supply this title.
+21      Order cancelled – we do not supply this publisher.
+22      Order cancelled – importation.
+23      Order cancelled – Apply direct; not available through wholesale channels.
+24      Order cancelled – kits not available.
+25      Order cancelled – not available as a processed book.
+26      Order cancelled – new price from publisher.
+27      Order cancelled – ISBN not recognized.
+28      Out of Print.
+29      Order for title is backordered at customer’s request.
+99      Other.
